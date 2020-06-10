@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\CronlessSchedule\\SkeletonServiceProvider"
+                "Spatie\\CronlessSchedule\\CronlessScheduelServiceProvider"
             ]
         }
     },
