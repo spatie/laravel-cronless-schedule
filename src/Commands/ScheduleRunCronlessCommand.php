@@ -8,11 +8,13 @@ use React\EventLoop\LoopInterface;
 
 class ScheduleRunCronlessCommand extends Command
 {
-    public $signature = 'schedule:run-cronless {--frequency=60} {--command=schedule:run}';
+    public $signature = 'schedule:run-cronless {--frequency=60} {--command=schedule:run} {--stop=0}';
 
     public $description = 'Run the scheduler';
 
     protected ?string $command = null;
+
+    protected ?int $frequency = null;
 
     protected LoopInterface $loop;
 
@@ -25,21 +27,21 @@ class ScheduleRunCronlessCommand extends Command
 
     public function handle()
     {
-        $frequency = $this->option('frequency');
-        $this->command = $this->option('command');
+        $this->frequency = (int)$this->option('frequency');
+        $this->command = (string)$this->option('command');
 
         $this
-            ->outputHeader($frequency, $this->command)
-            ->scheduleCommand($this->loop, $frequency)
-            ->registerKeypressHandler($this->loop)
-            ->runSchedule();
+            ->outputHeader()
+            ->scheduleCommand()
+            ->registerKeypressHandler()
+            ->runCronlessCommand();
 
         $this->loop->run();
     }
 
-    protected function outputHeader(int $frequency, string $command): self
+    protected function outputHeader(): self
     {
-        $this->comment("Will execute {$command} every {$frequency} seconds...");
+        $this->comment("Will execute {$this->command} every {$this->frequency} seconds...");
         $this->comment("Press enter to manually invoke a run...");
         $this->comment('-------------------------------------------------------');
         $this->comment('');
@@ -47,25 +49,29 @@ class ScheduleRunCronlessCommand extends Command
         return $this;
     }
 
-    protected function scheduleCommand(LoopInterface $loop, int $frequency): self
+    protected function scheduleCommand(): self
     {
-        $loop->addPeriodicTimer($frequency, fn () => $this->runSchedule());
+        if ($stopAfter = (int)$this->option('stop') > 0) {
+            $this->loop->addTimer($stopAfter, fn () => $this->loop->stop());
+        }
+
+        $this->loop->addPeriodicTimer($this->frequency, fn () => $this->runCronlessCommand());
 
         return $this;
     }
 
-    protected function registerKeypressHandler(LoopInterface $loop): self
+    protected function registerKeypressHandler(): self
     {
-        $stdio = new Stdio($loop);
+        $stdio = new Stdio($this->loop);
 
         $stdio->setEcho(false);
 
-        $stdio->on('data', fn () => $this->runSchedule());
+        $stdio->on('data', fn () => $this->runCronlessCommand());
 
         return $this;
     }
 
-    protected function runSchedule()
+    protected function runCronlessCommand()
     {
         $this->comment($this->timestamp("Running {$this->command}..."));
 

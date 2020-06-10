@@ -9,15 +9,18 @@ use Spatie\CronlessSchedule\Commands\ScheduleRunCronlessCommand;
 
 class CronlessScheduleServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->app
+            ->when(ScheduleRunCronlessCommand::class)
+            ->needs(LoopInterface::class)
+            ->give(fn () => Factory::create());
+    }
+
     public function boot()
     {
         $this->commands([
             ScheduleRunCronlessCommand::class,
         ]);
-
-        $this->app
-            ->when([ScheduleRunCronlessCommand::class, 'handle'])
-            ->needs(LoopInterface::class)
-            ->give(fn () => Factory::create());
     }
 }
