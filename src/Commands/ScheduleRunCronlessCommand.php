@@ -4,7 +4,6 @@ namespace Spatie\CronlessSchedule\Commands;
 
 use Clue\React\Stdio\Stdio;
 use Illuminate\Console\Command;
-use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 
 class ScheduleRunCronlessCommand extends Command

@@ -18,6 +18,6 @@ class CronlessScheduleServiceProvider extends ServiceProvider
         $this->app
             ->when([ScheduleRunCronlessCommand::class, 'handle'])
             ->needs(LoopInterface::class)
-            ->give(fn() => Factory::create());
+            ->give(fn () => Factory::create());
     }
 }

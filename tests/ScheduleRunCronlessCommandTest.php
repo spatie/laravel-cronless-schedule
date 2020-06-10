@@ -4,7 +4,6 @@ namespace Spatie\CronlessSchedule\Tests;
 
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
-use Spatie\CronlessSchedule\Commands\ScheduleRunCronlessCommand;
 
 class ScheduleRunCronlessCommandTest extends TestCase
 {
@@ -13,9 +12,9 @@ class ScheduleRunCronlessCommandTest extends TestCase
     {
         $loop = Factory::create();
 
-        $loop->addTimer(1, fn() => $loop->stop());
+        $loop->addTimer(1, fn () => $loop->stop());
 
-        $this->app->bind(LoopInterface::class, fn() => $loop);
+        $this->app->bind(LoopInterface::class, fn () => $loop);
 
         $this->artisan('schedule:run-cronless')->assertExitCode(0);
 
