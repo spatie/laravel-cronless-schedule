@@ -51,7 +51,7 @@ To perform an extra run of the scheduler, just press enter.
 
 ### Using an alternative frequency
 
-If you want to run the scheduler at another frequency, just can pass an amount of seconds to the `frequency` option. Here is an example where the schedule will be run every 5 seconds.
+If you want to run the scheduler at another frequency, you can pass an amount of seconds to the `frequency` option. Here is an example where the schedule will be run every 5 seconds.
 
 ```bash
 php artisan schedule:run-cronless --frequency=5
