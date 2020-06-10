@@ -52,6 +52,11 @@ If you want to run the scheduler at another frequency, just can pass an amount o
 php artisan cronless-schedule:run --frequency=5
 ```
 
+If you want to run another command instead of the scheduler, just can pass it to the `command` option. Here is an example where the inspire will be run every 5 seconds.
+
+```bash
+php artisan cronless-schedule:run --frequency=5 --command=inspire
+```
 
 ## Testing
 
