@@ -15,7 +15,7 @@ class CronLessScheduleRunCommandTest extends TestCase
 
         $loop = Factory::create();
 
-        $loop->addTimer(1, fn() => $loop->stop());
+        $loop->addTimer(1, fn () => $loop->stop());
 
         $command->useLoop($loop);
 

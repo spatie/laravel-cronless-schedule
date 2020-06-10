@@ -10,8 +10,8 @@ class TestKernel extends Kernel
     public function schedule(Schedule $schedule)
     {
         dd('using schedule');
-        $schedule->call(function() {
-                dd('here');
+        $schedule->call(function () {
+            dd('here');
         })->everyMinute();
     }
 }

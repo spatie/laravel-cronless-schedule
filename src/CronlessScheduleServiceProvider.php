@@ -13,5 +13,4 @@ class CronlessScheduleServiceProvider extends ServiceProvider
             CronlessScheduleRunCommand::class,
         ]);
     }
-
 }
