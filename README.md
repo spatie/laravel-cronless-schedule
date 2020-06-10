@@ -28,10 +28,10 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via composer. Probably you only want to use this schedule in a development environment.
 
 ```bash
-composer require spatie/laravel-cronless-schedule
+composer require spatie/laravel-cronless-schedule --dev
 ```
 
 ## Usage

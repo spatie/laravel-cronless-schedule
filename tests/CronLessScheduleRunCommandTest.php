@@ -13,7 +13,6 @@ class CronLessScheduleRunCommandTest extends TestCase
         /** @var CronlessScheduleRunCommand $command */
         $command = app(CronlessScheduleRunCommand::class);
 
-
         $loop = Factory::create();
 
         $loop->addTimer(1, fn() => $loop->stop());
@@ -21,5 +20,7 @@ class CronLessScheduleRunCommandTest extends TestCase
         $command->useLoop($loop);
 
         $command->handle();
+
+        $this->assertTrue(true);
     }
 }
