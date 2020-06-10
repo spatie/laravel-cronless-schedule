@@ -8,7 +8,7 @@ use React\EventLoop\LoopInterface;
 
 class ScheduleRunCronlessCommand extends Command
 {
-    public $signature = 'cronless-schedule:run {--frequency=60} {--command=schedule:run}';
+    public $signature = 'schedule:run-cronless {--frequency=60} {--command=schedule:run}';
 
     public $description = 'Run the scheduler';
 
@@ -67,11 +67,11 @@ class ScheduleRunCronlessCommand extends Command
 
     protected function runSchedule()
     {
-        $this->comment($this->timestamp('Running schedule...'));
+        $this->comment($this->timestamp("Running {$this->command}..."));
 
         $this->call($this->command);
 
-        $this->comment($this->timestamp('Schedule run finished.'));
+        $this->comment($this->timestamp("{$this->command} finished."));
         $this->comment('');
     }
 
