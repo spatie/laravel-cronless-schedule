@@ -45,7 +45,11 @@ php artisan schedule:run-cronless
 
 By default, it will run every minute. 
 
+### Manually triggering a run
+
 To perform an extra run of the scheduler, just press enter.
+
+### Using an alternative frequency
 
 If you want to run the scheduler at another frequency, just can pass an amount of seconds to the `frequency` option. Here is an example where the schedule will be run every 5 seconds.
 
@@ -53,10 +57,22 @@ If you want to run the scheduler at another frequency, just can pass an amount o
 php artisan schedule:run-cronless --frequency=5
 ```
 
+### Using another command
+
 If you want to run another command instead of the scheduler, just can pass it to the `command` option. Here is an example where the inspire will be run every 5 seconds.
 
 ```bash
 php artisan cronless-schedule:run --frequency=5 --command=inspire
+```
+
+### Only run the schedule for a certain period
+
+By default, the command will run forever. You can shorten that period by passing an amount of seconds to the `stop-after-seconds` option.
+
+In this example we'll stop the command after 5 seconds
+
+```bash
+php artisan cronless-schedule:run --stop-after-seconds=5
 ```
 
 ## Testing

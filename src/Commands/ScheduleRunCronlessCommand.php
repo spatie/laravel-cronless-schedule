@@ -8,7 +8,11 @@ use React\EventLoop\LoopInterface;
 
 class ScheduleRunCronlessCommand extends Command
 {
-    public $signature = 'schedule:run-cronless {--frequency=60} {--command=schedule:run} {--stop=0}';
+    public $signature = 'schedule:run-cronless
+                            {--frequency=60}
+                            {--command=schedule:run}
+                            {--stop-after-seconds=0}
+    ';
 
     public $description = 'Run the scheduler';
 
@@ -51,7 +55,7 @@ class ScheduleRunCronlessCommand extends Command
 
     protected function scheduleCommand(): self
     {
-        if ($stopAfter = (int)$this->option('stop') > 0) {
+        if ($stopAfter = (int)$this->option('stop-after-seconds') > 0) {
             $this->loop->addTimer($stopAfter, fn () => $this->loop->stop());
         }
 
