@@ -1,38 +1,23 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Spatie\CronlessSchedule\Tests;
 
+use Illuminate\Contracts\Console\Kernel;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\Skeleton\SkeletonServiceProvider;
+use Spatie\CronlessSchedule\CronlessScheduleServiceProvider;
+use Spatie\CronlessSchedule\Tests\TestClasses\TestKernel;
 
 class TestCase extends Orchestra
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->withFactories(__DIR__.'/database/factories');
-    }
-
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            CronlessScheduleServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function resolveApplicationConsoleKernel($app)
     {
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
-
-        /*
-        include_once __DIR__.'/../database/migrations/create_skeleton_tables.php.stub';
-        (new CreatePackageTables())->up();
-        */
+        $app->singleton(Kernel::class, TestKernel::class);
     }
 }

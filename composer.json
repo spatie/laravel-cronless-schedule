@@ -1,22 +1,23 @@
 {
-    "name": "spatie/:package_name",
-    "description": ":package_description",
+    "name": "spatie/laravel-cronless-schedule",
+    "description": "Run the Laravel scheduler without using cron",
     "keywords": [
         "spatie",
-        ":package_name"
+        "laravel-cronless-schedule"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/spatie/laravel-cronless-schedule",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "react/event-loop": "^1.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
@@ -27,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Spatie\\CronlessSchedule\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Spatie\\CronlessSchedule\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,11 +48,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
-            }
+                "Spatie\\CronlessSchedule\\SkeletonServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

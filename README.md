@@ -1,13 +1,21 @@
-# :package_description
+# Run the Laravel scheduler without using cron
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/:package_name/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cronless-schedule.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cronless-schedule)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-cronless-schedule/run-tests?label=tests)](https://github.com/spatie/laravel-cronless-schedule/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cronless-schedule.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cronless-schedule)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can also run `configure-skeleton.sh` to do this automatically.
+[Laravel's native scheduler](https://laravel.com/docs/master/scheduling) relies on cron to be executed every minute. It's rock sold an in most cases you should stick to using it.
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+If you want to simulate the scheduler running every minute in a test environment, using cron can be cumbersome. This package provides a command to run the scheduler every minute, without relying on cron. Instead it uses a [ReactPHP](https://reactphp.org) loop.
 
+This is how you can start the cronless schedule
+
+```bash
+php artisan cronless-schedule:run
+```
+
+This command will never end. Behind the scenes it will execute `php artisan schedule` every minute. 
+ 
 ## Support us
 
 Learn how to create a package like this one, by watching our premium video course:
@@ -23,32 +31,13 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require spatie/package-skeleton-laravel
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
+composer require spatie/laravel-cronless-schedule
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new Spatie\Skeleton();
+$skeleton = new Spatie\CronlessSchedule();
 echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
 
@@ -72,7 +61,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
 ## License
