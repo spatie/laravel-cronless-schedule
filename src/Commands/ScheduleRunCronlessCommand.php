@@ -39,7 +39,7 @@ class ScheduleRunCronlessCommand extends Command
 
     protected function outputHeader(int $frequency, string $command): self
     {
-        $this->comment("Will execute {$command} command every {$frequency} seconds...");
+        $this->comment("Will execute {$command} every {$frequency} seconds...");
         $this->comment("Press enter to manually invoke a run...");
         $this->comment('-------------------------------------------------------');
         $this->comment('');
