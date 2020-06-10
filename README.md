@@ -1,4 +1,4 @@
-# Run the Laravel scheduler without using cron
+# Run the Laravel scheduler without relying on cron
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cronless-schedule.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cronless-schedule)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-cronless-schedule/run-tests?label=tests)](https://github.com/spatie/laravel-cronless-schedule/actions?query=workflow%3Arun-tests+branch%3Amaster)
