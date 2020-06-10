@@ -8,9 +8,11 @@ use React\EventLoop\LoopInterface;
 
 class ScheduleRunCronlessCommand extends Command
 {
-    public $signature = 'schedule:run-cronless {--frequency=60}';
+    public $signature = 'cronless-schedule:run {--frequency=60} {--command=schedule:run}';
 
     public $description = 'Run the scheduler';
+
+    protected ?string $command = null;
 
     protected LoopInterface $loop;
 
@@ -24,9 +26,10 @@ class ScheduleRunCronlessCommand extends Command
     public function handle()
     {
         $frequency = $this->option('frequency');
+        $this->command = $this->option('command');
 
         $this
-            ->outputHeader($frequency)
+            ->outputHeader($frequency, $this->command)
             ->scheduleCommand($this->loop, $frequency)
             ->registerKeypressHandler($this->loop)
             ->runSchedule();
@@ -34,9 +37,9 @@ class ScheduleRunCronlessCommand extends Command
         $this->loop->run();
     }
 
-    protected function outputHeader(int $frequency): self
+    protected function outputHeader(int $frequency, string $command): self
     {
-        $this->comment("Will execute schedule:run every {$frequency} seconds...");
+        $this->comment("Will execute {$command} command every {$frequency} seconds...");
         $this->comment("Press enter to manually invoke a run...");
         $this->comment('-------------------------------------------------------');
         $this->comment('');
@@ -66,7 +69,7 @@ class ScheduleRunCronlessCommand extends Command
     {
         $this->comment($this->timestamp('Running schedule...'));
 
-        $this->call('schedule:run');
+        $this->call($this->command);
 
         $this->comment($this->timestamp('Schedule run finished.'));
         $this->comment('');
