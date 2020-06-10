@@ -2,12 +2,10 @@
 
 namespace Spatie\CronlessSchedule\Commands;
 
-use Closure;
 use Clue\React\Stdio\Stdio;
 use Illuminate\Console\Command;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
-use Symfony\Component\Process\Process;
 
 class CronlessScheduleRunCommand extends Command
 {
@@ -44,7 +42,7 @@ class CronlessScheduleRunCommand extends Command
 
     protected function scheduleCommand(LoopInterface $loop, int $frequency): self
     {
-        $loop->addPeriodicTimer($frequency, fn() => $this->runSchedule());
+        $loop->addPeriodicTimer($frequency, fn () => $this->runSchedule());
 
         return $this;
     }
@@ -55,7 +53,7 @@ class CronlessScheduleRunCommand extends Command
 
         $stdio->setEcho(false);
 
-        $stdio->on('data', fn() => $this->runSchedule());
+        $stdio->on('data', fn () => $this->runSchedule());
 
         return $this;
     }
