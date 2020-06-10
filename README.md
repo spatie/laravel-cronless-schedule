@@ -11,7 +11,7 @@ If you want to simulate the scheduler running every minute in a test environment
 This is how you can start the cronless schedule:
 
 ```bash
-php artisan cronless-schedule:run
+php artisan schedule:run-cronless
 ```
 
 This command will never end. Behind the scenes it will execute `php artisan schedule` every minute. 
@@ -39,7 +39,7 @@ composer require spatie/laravel-cronless-schedule --dev
 This is how you can start the cronless schedule:
 
 ```bash
-php artisan cronless-schedule:run
+php artisan schedule:run-cronless
 ```
 
 By default, it will run every minute. 
@@ -49,7 +49,7 @@ To perform an extra run of the scheduler, just press enter.
 If you want to run the scheduler at another frequency, just can pass an amount of seconds to the `frequency` option. Here is an example where the schedule will be run every 5 seconds.
 
 ```bash
-php artisan cronless-schedule:run --frequency=5
+php artisan schedule:run-cronless --frequency=5
 ```
 
 

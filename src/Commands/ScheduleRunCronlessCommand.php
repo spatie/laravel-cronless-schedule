@@ -7,27 +7,32 @@ use Illuminate\Console\Command;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 
-class CronlessScheduleRunCommand extends Command
+class ScheduleRunCronlessCommand extends Command
 {
-    public $signature = 'cronless-schedule:run {--frequency=60}';
+    public $signature = 'schedule:run-cronless {--frequency=60}';
 
     public $description = 'Run the scheduler';
 
-    protected ?LoopInterface $loop = null;
+    protected LoopInterface $loop;
+
+    public function __construct(LoopInterface $loop)
+    {
+        $this->loop = $loop;
+
+        parent::__construct();
+    }
 
     public function handle()
     {
-        $loop = $this->loop ?? Factory::create();
-
         $frequency = $this->option('frequency');
 
         $this
             ->outputHeader($frequency)
-            ->scheduleCommand($loop, $frequency)
-            ->registerKeypressHandler($loop)
+            ->scheduleCommand($this->loop, $frequency)
+            ->registerKeypressHandler($this->loop)
             ->runSchedule();
 
-        $loop->run();
+        $this->loop->run();
     }
 
     protected function outputHeader(int $frequency): self
@@ -73,11 +78,5 @@ class CronlessScheduleRunCommand extends Command
         $currentTime = now()->format('Y-m-d H:i:s');
 
         return "[{$currentTime}] - {$message}";
-    }
-
-
-    public function useLoop(LoopInterface $loop)
-    {
-        $this->loop = $loop;
     }
 }
