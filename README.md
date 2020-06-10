@@ -8,7 +8,7 @@
 
 If you want to simulate the scheduler running every minute in a test environment, using cron can be cumbersome. This package provides a command to run the scheduler every minute, without relying on cron. Instead it uses a [ReactPHP](https://reactphp.org) loop.
 
-This is how you can start the cronless schedule
+This is how you can start the cronless schedule:
 
 ```bash
 php artisan cronless-schedule:run
@@ -36,9 +36,10 @@ composer require spatie/laravel-cronless-schedule --dev
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\CronlessSchedule();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+This is how you can start the cronless schedule:
+
+```bash
+php artisan cronless-schedule:run
 ```
 
 ## Testing

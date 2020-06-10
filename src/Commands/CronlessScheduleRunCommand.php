@@ -3,6 +3,7 @@
 namespace Spatie\CronlessSchedule\Commands;
 
 use Closure;
+use Clue\React\Stdio\Stdio;
 use Illuminate\Console\Command;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
@@ -10,7 +11,7 @@ use Symfony\Component\Process\Process;
 
 class CronlessScheduleRunCommand extends Command
 {
-    public $signature = 'cronless-schedule:run';
+    public $signature = 'cronless-schedule:run {--frequency=60}';
 
     public $description = 'Run the scheduler';
 
@@ -20,29 +21,62 @@ class CronlessScheduleRunCommand extends Command
     {
         $loop = $this->loop ?? Factory::create();
 
-        $loop->addPeriodicTimer(60, function () {
-            $currentTime = now()->format('Y-m-d H:i:s');
+        $frequency = $this->option('frequency');
 
-            $this->info("[{$currentTime}] - Executing schedule:run...");
-
-            $this->call('schedule:run');
-        });
+        $this
+            ->outputHeader($frequency)
+            ->scheduleCommand($loop, $frequency)
+            ->registerKeypressHandler($loop)
+            ->runSchedule();
 
         $loop->run();
     }
 
-    protected function reportOutput(): Closure
+    protected function outputHeader(int $frequency): self
     {
-        return function (string $type, string $progressOutput) {
-            if ($type === Process::ERR) {
-                $this->error($progressOutput);
+        $this->comment("Will execute schedule:run every {$frequency} seconds...");
+        $this->comment("Press enter to manually invoke a run...");
+        $this->comment('-------------------------------------------------------');
+        $this->comment('');
 
-                return;
-            }
-
-            $this->info($progressOutput);
-        };
+        return $this;
     }
+
+    protected function scheduleCommand(LoopInterface $loop, int $frequency): self
+    {
+        $loop->addPeriodicTimer($frequency, fn() => $this->runSchedule());
+
+        return $this;
+    }
+
+    protected function registerKeypressHandler(LoopInterface $loop): self
+    {
+        $stdio = new Stdio($loop);
+
+        $stdio->setEcho(false);
+
+        $stdio->on('data', fn() => $this->runSchedule());
+
+        return $this;
+    }
+
+    protected function runSchedule()
+    {
+        $this->comment($this->timestamp('Running schedule...'));
+
+        $this->call('schedule:run');
+
+        $this->comment($this->timestamp('Schedule run finished.'));
+        $this->comment('');
+    }
+
+    protected function timestamp(string $message): string
+    {
+        $currentTime = now()->format('Y-m-d H:i:s');
+
+        return "[{$currentTime}] - {$message}";
+    }
+
 
     public function useLoop(LoopInterface $loop)
     {
