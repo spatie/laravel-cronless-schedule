@@ -55,7 +55,9 @@ class ScheduleRunCronlessCommand extends Command
 
     protected function scheduleCommand(): self
     {
-        if ($stopAfter = (int)$this->option('stop-after-seconds') > 0) {
+        $stopAfter = (int)$this->option('stop-after-seconds');
+
+        if ($stopAfter > 0) {
             $this->loop->addTimer($stopAfter, fn () => $this->loop->stop());
         }
 
