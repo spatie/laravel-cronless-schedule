@@ -59,10 +59,10 @@ php artisan schedule:run-cronless --frequency=5
 
 ### Using another command
 
-If you want to run another command instead of the scheduler, just can pass it to the `command` option. Here is an example where the inspire will be run every 5 seconds.
+If you want to run another command instead of the scheduler, just can pass it to the `command` option. Here is an example where another command will be run every 5 seconds.
 
 ```bash
-php artisan cronless-schedule:run --frequency=5 --command=inspire
+php artisan cronless-schedule:run --command=your-favorite-artisan-command
 ```
 
 ### Only run the schedule for a certain period
