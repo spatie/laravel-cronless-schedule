@@ -62,7 +62,7 @@ php artisan schedule:run-cronless --frequency=5
 If you want to run another command instead of the scheduler, just can pass it to the `command` option. Here is an example where another command will be run every 5 seconds.
 
 ```bash
-php artisan cronless-schedule:run --command=your-favorite-artisan-command
+php artisan schedule:run-cronless --command=your-favorite-artisan-command
 ```
 
 ### Only run the schedule for a certain period
@@ -72,7 +72,7 @@ By default, the command will run forever. You can shorten that period by passing
 In this example we'll stop the command after 5 seconds
 
 ```bash
-php artisan cronless-schedule:run --stop-after-seconds=5
+php artisan schedule:run-cronless --stop-after-seconds=5
 ```
 
 ## Testing
