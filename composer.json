@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
-        "orchestra/testbench": "^5.3",
+        "orchestra/testbench": "^5.3|^6.0",
         "phpunit/phpunit": "^9.2",
         "psalm/plugin-laravel": "^1.2",
         "vimeo/psalm": "^3.11"
