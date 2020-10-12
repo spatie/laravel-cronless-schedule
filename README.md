@@ -19,7 +19,7 @@ This command will never end. Behind the scenes it will execute `php artisan sche
  
 ## Support us
 
-[![Image](https://github-ads.s3.eu-central-1.amazonaws.com/laravel-cronless-schedule.jpg)](https://spatie.be/github-ad-click/laravel-cronless-schedule)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-cronless-schedule.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-cronless-schedule)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
