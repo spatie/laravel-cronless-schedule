@@ -23,6 +23,7 @@
     },
     "require-dev": {
         "orchestra/testbench": "^6.0|^7.0|^8.0",
+        "pestphp/pest": "^1.22",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
@@ -41,7 +42,10 @@
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
