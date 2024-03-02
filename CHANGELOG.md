@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-cronless-schedule` will be documented in this file
 
+## 1.2.0 - 2024-03-02
+
+### What's Changed
+
+* Convert all tests to Pest by @alexmanase in https://github.com/spatie/laravel-cronless-schedule/pull/13
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-cronless-schedule/pull/14
+
+### New Contributors
+
+* @alexmanase made their first contribution in https://github.com/spatie/laravel-cronless-schedule/pull/13
+
+**Full Changelog**: https://github.com/spatie/laravel-cronless-schedule/compare/1.1.1...1.2.0
+
 ## 1.1.1 - 2023-01-24
 
 ### What's Changed
