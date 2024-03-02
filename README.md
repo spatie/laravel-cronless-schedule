@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cronless-schedule.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cronless-schedule)
 ![Tests](https://github.com/spatie/laravel-cronless-schedule/workflows/Tests/badge.svg)
-![Psalm](https://github.com/spatie/laravel-cronless-schedule/workflows/Psalm/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cronless-schedule.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cronless-schedule)
 
 [Laravel's native scheduler](https://laravel.com/docs/master/scheduling) relies on cron to be executed every minute. It's rock solid and in most cases you should stick to using it.
