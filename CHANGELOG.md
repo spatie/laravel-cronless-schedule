@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-cronless-schedule` will be documented in this file
 
+## 1.2.1 - 2025-02-17
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-cronless-schedule/pull/15
+
+**Full Changelog**: https://github.com/spatie/laravel-cronless-schedule/compare/1.2.0...1.2.1
+
 ## 1.2.0 - 2024-03-02
 
 ### What's Changed
